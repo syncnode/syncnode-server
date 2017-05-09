@@ -2,7 +2,6 @@
   "name": "syncnode-server",
   "version": "1.0.7",
   "description": "",
-  "main": "index.js",
   "types": "index.d.ts",
   "dependencies": {
     "@types/chokidar": "^1.6.0",
