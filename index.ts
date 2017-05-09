@@ -4,7 +4,7 @@ import * as events from 'events';
 import * as WebSocket from 'ws';
 import * as http from 'http';
 import * as chokidar from 'chokidar';
-import { SyncNode, SyncNodeEventEmitter } from 'syncnode-client';
+import { SyncNode, SyncNodeEventEmitter } from 'syncnode-common';
 
 export interface SyncServerMessage {
   channel: string;

@@ -2,7 +2,7 @@
 /// <reference types="node" />
 import * as WebSocket from 'ws';
 import * as http from 'http';
-import { SyncNode, SyncNodeEventEmitter } from 'syncnode-client';
+import { SyncNode, SyncNodeEventEmitter } from 'syncnode-common';
 export interface SyncServerMessage {
     channel: string;
     type: string;

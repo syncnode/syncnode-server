@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const WebSocket = require("ws");
 const chokidar = require("chokidar");
-const syncnode_client_1 = require("syncnode-client");
-class SyncServer extends syncnode_client_1.SyncNodeEventEmitter {
+const syncnode_common_1 = require("syncnode-common");
+class SyncServer extends syncnode_common_1.SyncNodeEventEmitter {
     constructor(httpServer) {
         super();
         this.connections = new Set();
@@ -31,14 +31,14 @@ class SyncServer extends syncnode_client_1.SyncNodeEventEmitter {
         });
     }
     createChannel(name, data) {
-        data = data || new syncnode_client_1.SyncNode({});
+        data = data || new syncnode_common_1.SyncNode({});
         let channel = new SyncServerChannel(name, data);
         this.channels[name] = channel;
         return channel;
     }
 }
 exports.SyncServer = SyncServer;
-class SyncServerChannel extends syncnode_client_1.SyncNodeEventEmitter {
+class SyncServerChannel extends syncnode_common_1.SyncNodeEventEmitter {
     constructor(name, data) {
         super();
         this.name = name;
@@ -86,7 +86,7 @@ class SyncNodePersistFile {
         this.path = path;
         let data;
         try {
-            this.data = new syncnode_client_1.SyncNode(this.get());
+            this.data = new syncnode_common_1.SyncNode(this.get());
         }
         catch (err) {
             if (err.code === 'ENOENT') {
@@ -95,7 +95,7 @@ class SyncNodePersistFile {
             else {
                 console.log('Could not read data:  ', err);
             }
-            this.data = new syncnode_client_1.SyncNode(defaultData);
+            this.data = new syncnode_common_1.SyncNode(defaultData);
         }
         this.data.on('updated', () => {
             this.persist(this.data);
